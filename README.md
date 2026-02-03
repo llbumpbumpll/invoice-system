@@ -1,17 +1,17 @@
 # Invoice System (React + Express + PostgreSQL)
 
-This zip contains:
+This project contains:
 - PostgreSQL schema + CSV import scripts
 - Express API (Invoices + Reports)
 - React client (minimal pages)
 
 ## 1) Database
 Create DB:
-    createdb invoice_db
+    createdb invoices_db
 
 Apply schema + import (run from server/ folder):
-    psql -d invoice_db -f src/sql/001_schema.sql
-    psql -d invoice_db -f src/sql/002_import_csv.sql
+    psql -d invoices_db -f src/sql/001_schema.sql
+    psql -d invoices_db -f src/sql/002_import_csv.sql
 
 ## 2) Server
     cd server
