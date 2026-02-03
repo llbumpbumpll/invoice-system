@@ -11,3 +11,7 @@ server/node_modules/
 # Build outputs
 client/dist/
 server/dist/
+
+TA_TEMPLATE.md
+
+.gitignore

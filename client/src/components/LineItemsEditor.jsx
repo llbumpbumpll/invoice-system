@@ -92,6 +92,7 @@ export default function LineItemsEditor({ products, value, onChange }) {
                     type="number"
                     step="0.01"
                     min="0"
+                    disabled={true}
                     value={it.unit_price}
                     onChange={(e) => update(i, { unit_price: e.target.value })}
                     style={{ width: 120, textAlign: "right" }}

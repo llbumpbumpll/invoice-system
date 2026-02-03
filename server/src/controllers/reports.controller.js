@@ -45,4 +45,23 @@ export async function getSalesByCustomerSummary(req, res) {
   res.json(rows);
 }
 
+// Sales grouped by calendar month and product
+export async function getSalesByProductMonthlySummary(req, res) {
+  const { rows } = await pool.query(`
+    select
+      extract(year from i.invoice_date) as year,
+      extract(month from i.invoice_date) as month,
+      p.code as product_code,
+      p.name as product_name,
+      sum(li.quantity) as quantity_sold,
+      sum(li.extended_price) as value_sold
+    from invoice_line_item li
+    join invoice i on i.id = li.invoice_id
+    join product p on p.id = li.product_id
+    group by year, month, p.code, p.name
+    order by year, month, sum(li.extended_price) desc
+  `);
+  res.json(rows);
+}
+
 // Cleanup previous functions
