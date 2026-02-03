@@ -353,3 +353,19 @@ a {
 .gap-4 {
   gap: 1rem;
 }
+
+.top-banner {
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.top-banner a {
+  text-decoration: underline;
+  font-weight: 700;
+  margin-left: 4px;
+}

@@ -105,42 +105,63 @@ export default function CustomerList() {
 
             <div className="card">
                 <h4 className="mb-4">{editId ? "Edit Customer" : "Add New Customer"}</h4>
-                <form onSubmit={handleSubmit} className="flex gap-4 flex-wrap align-end">
-                    <div className="form-group" style={{ flex: "1 1 150px" }}>
-                        <label className="form-label">Code</label>
-                        <div className="flex gap-2">
-                            <input
-                                className="form-control"
-                                required={!autoCode}
-                                disabled={autoCode}
-                                value={form.code}
-                                onChange={e => setForm({ ...form, code: e.target.value })}
-                                placeholder="C001"
-                            />
-                            {!editId && (
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input type="checkbox" checked={autoCode} onChange={e => setAutoCode(e.target.checked)} id="c_auto" />
-                                    <label htmlFor="c_auto" style={{ marginLeft: 4, fontSize: '0.8rem' }}>Auto</label>
-                                </div>
-                            )}
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {/* Row 1: Code + Name */}
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div className="form-group" style={{ flex: "1 1 150px" }}>
+                            <label className="form-label">Code</label>
+                            <div className="flex gap-2">
+                                <input
+                                    className="form-control"
+                                    required={!autoCode}
+                                    disabled={autoCode}
+                                    value={form.code}
+                                    onChange={e => setForm({ ...form, code: e.target.value })}
+                                    placeholder="C001"
+                                />
+                                {!editId && (
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input type="checkbox" checked={autoCode} onChange={e => setAutoCode(e.target.checked)} id="c_auto" />
+                                        <label htmlFor="c_auto" style={{ marginLeft: 4, fontSize: '0.8rem' }}>Auto</label>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="form-group" style={{ flex: "2 1 250px" }}>
+                            <label className="form-label">Name</label>
+                            <input className="form-control" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Customer Name" />
                         </div>
                     </div>
-                    <div className="form-group" style={{ flex: "2 1 250px" }}>
-                        <label className="form-label">Name</label>
-                        <input className="form-control" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Customer Name" />
+
+                    {/* Row 2: Address 1 + Address 2 */}
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div className="form-group" style={{ flex: "1 1 250px" }}>
+                            <label className="form-label">Address Line 1</label>
+                            <input className="form-control" value={form.address_line1} onChange={e => setForm({ ...form, address_line1: e.target.value })} placeholder="Address Line 1" />
+                        </div>
+                        <div className="form-group" style={{ flex: "1 1 250px" }}>
+                            <label className="form-label">Address Line 2</label>
+                            <input className="form-control" value={form.address_line2} onChange={e => setForm({ ...form, address_line2: e.target.value })} placeholder="Address Line 2" />
+                        </div>
                     </div>
-                    <div className="form-group" style={{ flex: "1 1 200px" }}>
-                        <label className="form-label">Country</label>
-                        <select className="form-control" required value={form.country_id} onChange={e => setForm({ ...form, country_id: e.target.value })}>
-                            <option value="">Select Country</option>
-                            {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                        </select>
+
+                    {/* Row 3: Country + Credit Limit */}
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div className="form-group" style={{ flex: "1 1 200px" }}>
+                            <label className="form-label">Country</label>
+                            <select className="form-control" required value={form.country_id} onChange={e => setForm({ ...form, country_id: e.target.value })}>
+                                <option value="">Select Country</option>
+                                {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                            </select>
+                        </div>
+                        <div className="form-group" style={{ flex: "1 1 150px" }}>
+                            <label className="form-label">Credit Limit</label>
+                            <input type="number" step="0.01" className="form-control" value={form.credit_limit} onChange={e => setForm({ ...form, credit_limit: e.target.value })} placeholder="0.00" />
+                        </div>
                     </div>
-                    <div className="form-group" style={{ flex: "1 1 150px" }}>
-                        <label className="form-label">Credit Limit</label>
-                        <input type="number" step="0.01" className="form-control" value={form.credit_limit} onChange={e => setForm({ ...form, credit_limit: e.target.value })} placeholder="0.00" />
-                    </div>
-                    <div className="form-group" style={{ display: 'flex', gap: 8 }}>
+
+                    {/* Row 4: Buttons */}
+                    <div className="form-group" style={{ display: 'flex', gap: 8, marginTop: '8px' }}>
                         <button type="submit" className="btn btn-primary" style={{ height: "42px" }}>{editId ? "Update" : "Add"}</button>
                         {editId && <button type="button" onClick={handleCancel} className="btn btn-outline" style={{ height: "42px" }}>Cancel</button>}
                     </div>

@@ -34,7 +34,7 @@ export default function InvoiceEdit() {
                 // If total is 0, rate is default.
                 const h = inv.header;
                 const total = Number(h.total_amount);
-                const vat = Number(h.vat);
+                const vat =  Math.round(Number(h.vat) * 100) / 100;
                 const rate = total > 0 ? (vat / total) : 0.07;
 
                 setInitialData({

@@ -143,7 +143,7 @@ export default function InvoiceForm({ customers, products, onSubmit, submitting,
                     min="0"
                     max="1"
                     className="form-control"
-                    value={vatRate}
+                    value={Math.round(Number(vatRate) * 100) / 100}
                     onChange={(e) => setVatRate(e.target.value)}
                   />
                   <span style={{ fontSize: '0.875rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>

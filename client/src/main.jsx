@@ -57,11 +57,17 @@ function Sidebar() {
 // Example usage: <Layout><InvoiceList /></Layout>
 function Layout({ children }) {
   return (
-    <div className="app-layout">
-      <Sidebar />
-      <main className="main-wrapper">
-        {children}
-      </main>
+    <div className="layout-container">
+      <div className="top-banner no-print">
+        This is a sample term project for CPE241 Database Systems. Some functions may be incomplete. Click
+        <a href="https://google.com" target="_blank" rel="noreferrer">here for questions</a>
+      </div>
+      <div className="app-layout">
+        <Sidebar />
+        <main className="main-wrapper">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export const formatDate = (dateStr) => {
     if (!dateStr) return "-";
     try {
         const d = new Date(dateStr);
-        return new Intl.DateTimeFormat('th-TH', {
+        return new Intl.DateTimeFormat('en-US', {
             day: '2-digit',
             month: 'long',
             year: 'numeric',

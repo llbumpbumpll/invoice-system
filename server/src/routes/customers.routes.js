@@ -7,7 +7,7 @@ const r = Router();
 
 // List customers
 r.get("/", async (_, res) => {
-  const { rows } = await pool.query("select id, code, name from customer order by name");
+  const { rows } = await pool.query("select * from customer order by name");
   res.json(rows);
 });
 
