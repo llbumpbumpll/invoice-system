@@ -1,8 +1,11 @@
+// Invoice form component (ฟอร์มสร้าง/แก้ไขใบแจ้งหนี้)
+// Example usage: <InvoiceForm customers={...} products={...} onSubmit={...} />
 import React from "react";
 import LineItemsEditor from "./LineItemsEditor.jsx";
 import { formatBaht } from "../utils.js";
 
 export default function InvoiceForm({ customers, products, onSubmit, submitting, initialData }) {
+  // Local state for header fields and line items
   const [invoiceNo, setInvoiceNo] = React.useState("");
   const [customerId, setCustomerId] = React.useState(customers[0]?.id ?? "");
   const [invoiceDate, setInvoiceDate] = React.useState(new Date().toISOString().slice(0, 10));
@@ -25,6 +28,7 @@ export default function InvoiceForm({ customers, products, onSubmit, submitting,
     } else {
       const first = products[0];
       if (products.length > 0) {
+        // Default first line item when creating
         setItems([{ product_id: first.id, quantity: 1, unit_price: Number(first.unit_price || 0) }]);
       }
     }
@@ -60,6 +64,7 @@ export default function InvoiceForm({ customers, products, onSubmit, submitting,
 
   // NOTE: I am placing the autoCode logic inside the render.
 
+  // Build payload and pass to parent
   function handleSubmit(e) {
     e.preventDefault();
     const payload = {
@@ -78,6 +83,7 @@ export default function InvoiceForm({ customers, products, onSubmit, submitting,
 
   return (
     <form onSubmit={handleSubmit} className="invoice-form">
+      {/* Example usage: fill fields, then submit to create/update */}
       <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 24, marginBottom: 24 }}>
 
         {/* Left Column: Details */}

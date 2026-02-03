@@ -1,3 +1,5 @@
+// Invoice API wrapper (ชุดเรียก API สำหรับใบแจ้งหนี้)
+// Example usage: createInvoice(payload).then(({ id }) => ...)
 import { http } from "./http.js";
 
 export function listInvoices() {

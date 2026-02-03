@@ -1,3 +1,5 @@
+// Product API wrapper (ชุดเรียก API สำหรับสินค้า)
+// Example usage: listProducts().then(setProducts)
 import { http } from "./http.js";
 
 export function listProducts() {

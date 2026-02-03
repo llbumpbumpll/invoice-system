@@ -1,3 +1,5 @@
+// Invoice routes (เส้นทาง API สำหรับใบแจ้งหนี้)
+// Example usage: POST /api/invoices
 import { Router } from "express";
 import * as c from "../controllers/invoices.controller.js";
 

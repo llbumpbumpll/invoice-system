@@ -1,3 +1,5 @@
+// Invoice controller (ตรรกะจัดการใบแจ้งหนี้)
+// Example usage: listInvoices -> GET /api/invoices
 import { pool } from "../db/pool.js";
 import { z } from "zod";
 
@@ -14,6 +16,7 @@ const CreateInvoiceSchema = z.object({
   })).min(1)
 });
 
+// GET list of invoices
 export async function listInvoices(req, res) {
   const { rows } = await pool.query(`
     select i.id, i.invoice_no, i.invoice_date, i.amount_due,
@@ -25,6 +28,7 @@ export async function listInvoices(req, res) {
   res.json(rows);
 }
 
+// GET single invoice with header + line items
 export async function getInvoice(req, res) {
   const id = Number(req.params.id);
 
@@ -54,6 +58,7 @@ export async function getInvoice(req, res) {
   res.json({ header: header.rows[0], line_items: lines.rows });
 }
 
+// POST create invoice (auto invoice_no if blank)
 export async function createInvoice(req, res) {
   const parsed = CreateInvoiceSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
@@ -118,12 +123,14 @@ export async function createInvoice(req, res) {
   }
 }
 
+// DELETE invoice by id
 export async function deleteInvoice(req, res) {
   const id = Number(req.params.id);
   await pool.query(`delete from invoice where id=$1`, [id]);
   res.json({ ok: true });
 }
 
+// PUT update invoice header + replace line items
 export async function updateInvoice(req, res) {
   const id = Number(req.params.id);
   const parsed = CreateInvoiceSchema.safeParse(req.body);

@@ -1,3 +1,5 @@
+// Reports routes (เส้นทาง API สำหรับรายงาน)
+// Example usage: GET /api/reports/product-sales
 import { Router } from "express";
 import * as c from "../controllers/reports.controller.js";
 const r = Router();

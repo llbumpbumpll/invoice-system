@@ -1,5 +1,8 @@
+// Reports controller (ตรรกะสรุปยอดขาย)
+// Example usage: GET /api/reports/product-sales
 import { pool } from "../db/pool.js";
 
+// Latest invoices (quick summary)
 export async function getInvoicesMonthlySummary(req, res) {
   const { rows } = await pool.query(`
     select i.invoice_no, i.invoice_date, c.name as customer_name, i.amount_due
@@ -11,6 +14,7 @@ export async function getInvoicesMonthlySummary(req, res) {
   res.json(rows);
 }
 
+// Sales grouped by product
 export async function getSalesByProductSummary(req, res) {
   const { rows } = await pool.query(`
     select p.code as product_code, p.name as product_name,
@@ -24,6 +28,7 @@ export async function getSalesByProductSummary(req, res) {
   res.json(rows);
 }
 
+// Sales grouped by customer and product
 export async function getSalesByCustomerSummary(req, res) {
   const { rows } = await pool.query(`
     select p.code as product_code, p.name as product_name,

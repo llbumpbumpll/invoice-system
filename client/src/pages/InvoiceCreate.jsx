@@ -1,3 +1,5 @@
+// Create invoice page (หน้าสร้างใบแจ้งหนี้)
+// Example usage: visit `/invoices/new`
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { listCustomers } from "../api/customers.api.js";
@@ -12,12 +14,14 @@ export default function InvoiceCreate() {
   const [err, setErr] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
 
+  // Load customers + products for dropdowns
   React.useEffect(() => {
     Promise.all([listCustomers(), listProducts()])
       .then(([cs, ps]) => { setCustomers(cs); setProducts(ps); })
       .catch((e) => setErr(String(e.message || e)));
   }, []);
 
+  // Submit to API then navigate to detail page
   async function onSubmit(payload) {
     setErr("");
     setSubmitting(true);

@@ -1,13 +1,17 @@
+// Line items table editor (ตารางรายการสินค้าในใบแจ้งหนี้)
+// Example usage: <LineItemsEditor products={products} value={items} onChange={setItems} />
 import React from "react";
 
 export default function LineItemsEditor({ products, value, onChange }) {
   const items = value;
 
+  // Update one row by index
   function update(i, patch) {
     const next = items.map((x, idx) => (idx === i ? { ...x, ...patch } : x));
     onChange(next);
   }
 
+  // Add a new row with default product/price
   function addRow() {
     const first = products[0];
     onChange([
@@ -16,15 +20,18 @@ export default function LineItemsEditor({ products, value, onChange }) {
     ]);
   }
 
+  // Remove a row by index
   function removeRow(i) {
     onChange(items.filter((_, idx) => idx !== i));
   }
 
+  // When selecting a product, sync unit price
   function onPickProduct(i, productId) {
     const p = products.find((x) => String(x.id) === String(productId));
     update(i, { product_id: p ? p.id : "", unit_price: p ? Number(p.unit_price || 0) : 0 });
   }
 
+  // Compute extended price (qty * unit price)
   function computeExtended(it) {
     const q = Number(it.quantity || 0);
     const up = Number(it.unit_price || 0);

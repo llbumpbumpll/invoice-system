@@ -1,3 +1,5 @@
+// Invoice list page (หน้ารายการใบแจ้งหนี้)
+// Example usage: visit `/invoices`
 import React from "react";
 import { Link } from "react-router-dom";
 import { listInvoices, deleteInvoice } from "../api/invoices.api.js";
@@ -7,6 +9,7 @@ export default function InvoiceList() {
   const [rows, setRows] = React.useState([]);
   const [err, setErr] = React.useState("");
 
+  // Load invoice rows from API
   const loadData = () => {
     listInvoices()
       .then(setRows)
@@ -15,6 +18,7 @@ export default function InvoiceList() {
 
   React.useEffect(loadData, []);
 
+  // Delete invoice after confirmation
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this invoice?")) return;
     deleteInvoice(id)

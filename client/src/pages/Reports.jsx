@@ -1,3 +1,5 @@
+// Reports dashboard (หน้ารายงานสรุป)
+// Example usage: visit `/reports`
 import React from "react";
 import { http } from "../api/http.js";
 import { formatBaht } from "../utils.js";
@@ -7,6 +9,7 @@ export default function Reports() {
   const [byCustomer, setByCustomer] = React.useState([]);
   const [err, setErr] = React.useState("");
 
+  // Load sales summaries
   React.useEffect(() => {
     Promise.all([
       http("/api/reports/product-sales"),

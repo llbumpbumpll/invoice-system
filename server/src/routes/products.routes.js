@@ -1,8 +1,11 @@
+// Product routes (เส้นทาง API สำหรับสินค้า)
+// Example usage: GET /api/products
 import { Router } from "express";
 import { pool } from "../db/pool.js";
 
 const r = Router();
 
+// List products (with units)
 r.get("/", async (_, res) => {
   const { rows } = await pool.query(`
     select p.id, p.code, p.name, p.unit_price, u.code as units_code, p.units_id

@@ -1,3 +1,5 @@
+-- Import seed CSV data (นำเข้าข้อมูลตัวอย่าง)
+-- Example usage: psql -f src/sql/002_import_csv.sql
 \copy country(id, created_at, code, name) from 'data/country_test.csv' with (format csv, header true);
 \copy customer(id, created_at, code, name, address_line1, address_line2, country_id, credit_limit) from 'data/customer_test.csv' with (format csv, header true);
 \copy units(id, created_at, code, name) from 'data/units_test.csv' with (format csv, header true);

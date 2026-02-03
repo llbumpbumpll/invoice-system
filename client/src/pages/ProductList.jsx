@@ -1,4 +1,6 @@
 
+// Product CRUD page (หน้าจัดการสินค้า)
+// Example usage: visit `/products` แล้วเพิ่ม/แก้ไข/ลบ
 import React from "react";
 import { listProducts, listUnits, createProduct, updateProduct, deleteProduct } from "../api/products.api.js";
 import { formatBaht } from "../utils.js";
@@ -16,6 +18,7 @@ export default function ProductList() {
     });
     const [autoCode, setAutoCode] = React.useState(false);
 
+    // Load products + units
     const loadData = () => {
         setLoading(true);
         Promise.all([listProducts(), listUnits()])
@@ -32,6 +35,7 @@ export default function ProductList() {
 
     React.useEffect(loadData, []);
 
+    // Create or update product
     const handleSubmit = (e) => {
         e.preventDefault();
         const payload = { ...form };
@@ -51,6 +55,7 @@ export default function ProductList() {
             .catch(e => setErr(String(e.message || e)));
     };
 
+    // Populate form for editing
     const handleEdit = (p) => {
         setEditId(p.id);
         // Find unit id from units_code? No, we need the actual units_id.
@@ -71,6 +76,7 @@ export default function ProductList() {
         setAutoCode(false);
     };
 
+    // Delete (with optional force delete)
     const handleDelete = (id) => {
         if (!window.confirm("Are you sure you want to delete this product?")) return;
         deleteProduct(id)

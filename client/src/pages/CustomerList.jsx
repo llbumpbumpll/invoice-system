@@ -1,3 +1,5 @@
+// Customer CRUD page (หน้าจัดการลูกค้า)
+// Example usage: visit `/customers` แล้วเพิ่ม/แก้ไข/ลบ
 import React from "react";
 import { listCustomers, listCountries, createCustomer, updateCustomer, deleteCustomer } from "../api/customers.api.js";
 
@@ -14,6 +16,7 @@ export default function CustomerList() {
     });
     const [autoCode, setAutoCode] = React.useState(false);
 
+    // Load customers + countries
     const loadData = () => {
         setLoading(true);
         Promise.all([listCustomers(), listCountries()])
@@ -30,6 +33,7 @@ export default function CustomerList() {
 
     React.useEffect(loadData, []);
 
+    // Create or update customer
     const handleSubmit = (e) => {
         e.preventDefault();
         const payload = { ...form };
@@ -49,6 +53,7 @@ export default function CustomerList() {
             .catch(e => setErr(String(e.message || e)));
     };
 
+    // Populate form for editing
     const handleEdit = (c) => {
         setEditId(c.id);
         const limit = c.credit_limit || "";
@@ -63,6 +68,7 @@ export default function CustomerList() {
         setAutoCode(false);
     };
 
+    // Delete (with optional force delete)
     const handleDelete = (id) => {
         if (!window.confirm("Are you sure you want to delete this customer?")) return;
         deleteCustomer(id)

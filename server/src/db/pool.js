@@ -1,3 +1,5 @@
+// PostgreSQL connection pool (ตัวเชื่อม DB)
+// Example usage: pool.query("SELECT 1")
 import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();

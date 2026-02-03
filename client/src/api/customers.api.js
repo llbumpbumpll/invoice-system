@@ -1,3 +1,5 @@
+// Customer API wrapper (ชุดเรียก API สำหรับลูกค้า)
+// Example usage: listCustomers().then(setCustomers)
 import { http } from "./http.js";
 
 export function listCustomers() {

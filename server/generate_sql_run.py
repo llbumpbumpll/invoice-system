@@ -1,4 +1,6 @@
 
+"""Generate sql_run.sql from CSV data (สร้างไฟล์ SQL สำหรับ seed)"""
+# Example usage: python generate_sql_run.py
 import csv
 import os
 

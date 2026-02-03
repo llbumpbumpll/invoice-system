@@ -1,4 +1,6 @@
 
+// Run SQL init script using DATABASE_URL (สคริปต์ตั้งค่า DB)
+// Example usage: node run_db_init.js
 import pg from 'pg';
 import dotenv from 'dotenv';
 import fs from 'fs';
@@ -27,6 +29,7 @@ async function run() {
         console.log(`Connecting to database...`);
         console.log(`Executing SQL script from: ${sqlPath}`);
 
+        // Execute SQL (schema + seed data)
         await client.query(sql);
 
         console.log('Successfully executed sql_run.sql');

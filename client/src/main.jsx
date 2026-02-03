@@ -1,3 +1,5 @@
+// App entry: mounts React, sets up routes and main layout
+// Example usage: visit `/invoices` to see the invoice list
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from "react-router-dom";
@@ -10,6 +12,7 @@ import CustomerList from "./pages/CustomerList.jsx";
 import ProductList from "./pages/ProductList.jsx";
 import "./index.css";
 
+// Left navigation sidebar (เมนูหลักของระบบ)
 function Sidebar() {
   const getLinkClass = ({ isActive }) => isActive ? "nav-item active" : "nav-item";
 
@@ -28,6 +31,7 @@ function Sidebar() {
         </div>
       </div>
       <nav className="sidebar-nav">
+        {/* Example: click to open invoice list page */}
         <NavLink to="/invoices" className={getLinkClass}>
           <svg style={{ marginRight: 10 }} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           Invoices
@@ -49,6 +53,8 @@ function Sidebar() {
   );
 }
 
+// Page layout wrapper (sidebar + main content)
+// Example usage: <Layout><InvoiceList /></Layout>
 function Layout({ children }) {
   return (
     <div className="app-layout">
@@ -60,10 +66,12 @@ function Layout({ children }) {
   );
 }
 
+// App router definitions (define page URLs)
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* Default route → invoices list */}
         <Route path="/" element={<Navigate to="/invoices" replace />} />
         <Route path="/invoices" element={<Layout><InvoiceList /></Layout>} />
         <Route path="/invoices/new" element={<Layout><InvoiceCreate /></Layout>} />

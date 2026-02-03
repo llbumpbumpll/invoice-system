@@ -1,3 +1,5 @@
+// Edit invoice page (หน้าแก้ไขใบแจ้งหนี้)
+// Example usage: visit `/invoices/123/edit`
 import React from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { listCustomers } from "../api/customers.api.js";
@@ -14,6 +16,7 @@ export default function InvoiceEdit() {
     const [err, setErr] = React.useState("");
     const [submitting, setSubmitting] = React.useState(false);
 
+    // Load customers, products, and invoice detail
     React.useEffect(() => {
         Promise.all([listCustomers(), listProducts(), getInvoice(id)])
             .then(([cs, ps, inv]) => {
@@ -45,6 +48,7 @@ export default function InvoiceEdit() {
             .catch((e) => setErr(String(e.message || e)));
     }, [id]);
 
+    // Submit updates then go back to detail view
     async function onSubmit(payload) {
         setErr("");
         setSubmitting(true);

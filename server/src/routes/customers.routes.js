@@ -1,13 +1,17 @@
+// Customer routes (เส้นทาง API สำหรับลูกค้า)
+// Example usage: GET /api/customers
 import { Router } from "express";
 import { pool } from "../db/pool.js";
 
 const r = Router();
 
+// List customers
 r.get("/", async (_, res) => {
   const { rows } = await pool.query("select id, code, name from customer order by name");
   res.json(rows);
 });
 
+// Create customer (supports auto code)
 r.post("/", async (req, res) => {
   let { code, name, address_line1, address_line2, country_id, credit_limit } = req.body;
   try {

@@ -1,3 +1,5 @@
+-- Schema for invoice system tables (โครงสร้างตารางหลัก)
+-- Example usage: psql -f src/sql/001_schema.sql
 drop table if exists invoice_line_item;
 drop table if exists invoice;
 drop table if exists product;

@@ -1,3 +1,5 @@
+// Invoice detail/print page (หน้าดูใบแจ้งหนี้ + พิมพ์)
+// Example usage: visit `/invoices/123` แล้วกด Print
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { getInvoice } from "../api/invoices.api.js";
@@ -8,6 +10,7 @@ export default function InvoiceView() {
   const [data, setData] = React.useState(null);
   const [err, setErr] = React.useState("");
 
+  // Load invoice data
   React.useEffect(() => {
     getInvoice(id)
       .then(setData)
@@ -20,6 +23,7 @@ export default function InvoiceView() {
   const h = data.header;
   const lines = data.line_items || [];
 
+  // Trigger browser print dialog
   const handlePrint = () => {
     window.print();
   };

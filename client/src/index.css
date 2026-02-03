@@ -1,3 +1,5 @@
+/* Global styles for layout + components (สไตล์หลักของหน้าเว็บ) */
+/* Example usage: wrap content with .card or use .btn.btn-primary */
 :root {
   /* Dynamic Theme Variables */
   --primary: #6366f1;

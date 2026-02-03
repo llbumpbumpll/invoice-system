@@ -1,3 +1,5 @@
+// HTTP helper for API calls (ตัวช่วยเรียก API)
+// Example usage: http("/api/products")
 export const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
 
 export async function http(path, options = {}) {

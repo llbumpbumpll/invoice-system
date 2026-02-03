@@ -1,3 +1,5 @@
+// Express API server entry (เริ่มต้นเซิร์ฟเวอร์ API)
+// Example usage: `node src/app.js` แล้วเรียก /health
 import express from "express";
 import cors from "cors";
 
@@ -10,8 +12,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check
 app.get("/health", (_, res) => res.json({ ok: true }));
 
+// API routes
 app.use("/api/customers", customersRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/invoices", invoicesRoutes);

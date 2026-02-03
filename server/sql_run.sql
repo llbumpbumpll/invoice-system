@@ -1,4 +1,5 @@
 -- Auto-generated SQL script to setup schema and load data
+-- Example usage: psql -f sql_run.sql
 -- Database: PostgreSQL (Docker)
 
 -- ==========================================
